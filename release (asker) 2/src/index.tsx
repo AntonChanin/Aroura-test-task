@@ -4,7 +4,5 @@ import App from './App';
 import './index.css';
 
 createRoot(document.getElementById('app')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  React.createElement(App, {}, null)
 );
