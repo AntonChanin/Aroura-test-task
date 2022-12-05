@@ -1,17 +1,9 @@
-type CommentModel = {
-  id: string;
-  author: string;
-  avatar: string;
-  comment: string;
-  published: string;
-};
-
 type PostModel = {
   id: string;
   description: string;
   images: string[];
   published: string;
-  comments: CommentModel[];
+  comments: Message[];
 }
 
 type Message = {
@@ -35,4 +27,4 @@ type ServerResponse<T> = {
   error: Error;
 };
 
-export type { GetMessagesAnswer, Error, Message, CommentModel, PostModel, ServerResponse };
+export type { GetMessagesAnswer, Error, Message, PostModel, ServerResponse };
