@@ -14,11 +14,25 @@ type PostModel = {
   comments: CommentModel[];
 }
 
-type ServerResponse<T> = {
-  status: string;
+type Message = {
+  id: number;
+  replyTo: number;
+  author: string;
+  message: string;
+  timestamp: number;
+}
+
+type GetMessagesAnswer = {
+  messages: Message[];
+}
+
+type Error = {
   code: number;
-  total: number;
-  data: T[];
+}
+
+type ServerResponse<T> = {
+  answer: T;
+  error: Error;
 };
 
-export type { CommentModel, PostModel, ServerResponse };
+export type { GetMessagesAnswer, Error, Message, CommentModel, PostModel, ServerResponse };
