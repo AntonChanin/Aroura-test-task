@@ -1,27 +1,28 @@
 import { createElement, FC } from 'react';
-import { CommentModel } from '../../models/model';
+import { Message } from '../../models/model';
+import { getDecodeDate, getDecodeURIComponent } from '../../utils/getDecode';
 
 import classes from './CommentCard.module.scss';
 
 type Props = {
   seed?: string;
-  model: CommentModel;
+  model: Message;
   actions?: string[];
 }
 
 const CommentCard: FC<Props> = (props) => {
   const { seed, model, actions = ['Add', 'Remove']  } = props;
-  const { id, author, avatar, comment, published } = model;
+  const { id, author, message, replyTo, timestamp } = model;
 
   return createElement('div', { className: `${classes.commentCardContainer}` }, 
     [
-      createElement('h2', { className: classes.fontBold, key: 'h2_0' }),
-        createElement('p', { className: `${classes.nav}`, key: 'p_0' }, [
+      createElement('h2', { className: classes.fontBold }),
+        createElement('p', null, [
           createElement('span', null, 'Author:'),
-          createElement('span', { className: '' }, author),
+          createElement('img', { className: '', alt: '', src: `data:image/png;base64,${author}` }),
         ]),
-        createElement('p', { className: `${classes.nav}`, key: 'p_0' }, `${comment} ${published}`),
-        createElement('img', { className: `${classes.nav}`, key: 'p_0', src: avatar }),
+        createElement('p', null, `${getDecodeURIComponent(message)} `),
+        createElement('p', null, `Published: ${getDecodeDate(timestamp)}`),
     ]
   );
 };

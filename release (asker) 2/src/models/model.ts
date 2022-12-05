@@ -1,24 +1,30 @@
-type CommentModel = {
-  id: string;
-  author: string;
-  avatar: string;
-  comment: string;
-  published: string;
-};
-
 type PostModel = {
   id: string;
   description: string;
   images: string[];
   published: string;
-  comments: CommentModel[];
+  comments: Message[];
+}
+
+type Message = {
+  id: number;
+  replyTo: number;
+  author: string;
+  message: string;
+  timestamp: number;
+}
+
+type GetMessagesAnswer = {
+  messages: Message[];
+}
+
+type Error = {
+  code: number;
 }
 
 type ServerResponse<T> = {
-  status: string;
-  code: number;
-  total: number;
-  data: T[];
+  answer: T;
+  error: Error;
 };
 
-export type { CommentModel, PostModel, ServerResponse };
+export type { GetMessagesAnswer, Error, Message, PostModel, ServerResponse };
