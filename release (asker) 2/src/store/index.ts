@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { localApi } from './localApi/local.api';
-import { messagesReducer } from './localApi/local.slice';
+import { messageApi } from './localApi/message.api';
+import { postsReducer } from './localApi/post.slice';
 
 export const store = configureStore({
   reducer: {
-    [localApi.reducerPath]: localApi.reducer,
-    messages: messagesReducer,
+    [messageApi.reducerPath]: messageApi.reducer,
+    posts: postsReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(messageApi.middleware),
 });
 
 setupListeners(store.dispatch);

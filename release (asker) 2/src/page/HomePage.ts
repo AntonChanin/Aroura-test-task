@@ -5,11 +5,9 @@ import { useGetMessegesQuery } from '../store/localApi/local.api';
 
 const HomePage = () => {
   const posts: PostModel[] = [];
-  const { isLoading, isError, error, data: messages } = useGetMessegesQuery('', {
+  const { isLoading, isError, data: messages } = useGetMessegesQuery('', {
     refetchOnFocus: true,
   });
-
-  console.log('messages', messages, 'isLoading', isLoading, 'isError', isError);
 
   return createElement(
     Fragment,

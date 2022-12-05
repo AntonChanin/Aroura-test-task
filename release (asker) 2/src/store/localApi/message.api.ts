@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ServerResponse, GetMessagesAnswer } from '../../models/model';
 
-export const localApi = createApi({
-  reducerPath: 'local/api',
+export const messageApi = createApi({
+  reducerPath: 'message/api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8080/',
   }),
@@ -44,4 +44,4 @@ export const localApi = createApi({
   }),
 });
 
-export const { useGetMessegesQuery, useLazyGetMessegesQuery } = localApi;
+export const { useGetMessegesQuery, useLazyGetMessegesQuery } = messageApi;
