@@ -1,0 +1,14 @@
+.userInfo {
+  display: flex;
+  &Name {
+    font-weight: 500;
+    margin-right: 5px;
+  }
+
+  &Avatar {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+

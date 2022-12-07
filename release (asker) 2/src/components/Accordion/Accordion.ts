@@ -18,7 +18,7 @@ const Accordion: FC<PropsWithChildren<Props>> = (props) => {
       'div',
       { className: classes.accordion },
       createElement('span', null, title ?? null),
-      createElement(Button, { onClick, type: 'text' }, buttonText ?? null),
+      createElement(Button, { onClick, variant: 'text' }, buttonText ?? null),
     ),
     createElement('hr', { className: classes.accordionBottom }),
     children

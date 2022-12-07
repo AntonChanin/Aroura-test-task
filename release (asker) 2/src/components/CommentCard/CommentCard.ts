@@ -1,9 +1,10 @@
 import { createElement, FC, useState } from 'react';
-import useAppSelector from '../../hooks/redux';
+
 import { Message } from '../../models/model';
 import { getDecodeDate, getDecodeURIComponent } from '../../utils/getDecode';
 import Accordion from '../Accordion/Accordion';
 import PostForm from '../PostForm';
+import ShortUserInfo from '../ShortUserInfo';
 
 import classes from './CommentCard.module.scss';
 
@@ -18,16 +19,11 @@ const CommentCard: FC<Props> = (props) => {
   const { model } = props;
   const { author, message, id, timestamp } = model;
   const [isOpenForm, setIsOpenForm] = useState(false);
-  const { userObj } = useAppSelector((state) => state.users);
-  const { name, surname, image } = userObj[author];
-  const authorFullName = `${getDecodeURIComponent(name)} ${getDecodeURIComponent(surname)}`
 
   return createElement('div', { className: classes.commentCard }, 
     createElement(
-      'div',
-      { className: classes.commentCardUserRow },
-      createElement('span', { className: classes.userName }, `Author: ${authorFullName}`),
-      createElement('img', { className: classes.commentCardAvatar, src: image?.replace('file/', 'filePublic/'), alt: '' }),
+      ShortUserInfo,
+      { author },
     ),
     createElement('p', null, `${getDecodeURIComponent(message)} `),
     isOpenForm ? createElement(PostForm, { replyTo: id }) : null,

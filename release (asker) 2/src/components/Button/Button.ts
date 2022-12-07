@@ -6,12 +6,13 @@ type Props = {
   className?: string;
   onClick?(event: MouseEvent): void;
   onSubmit?(event?: MouseEvent): void;
-  type?: 'fill' | 'outline' | 'text';
+  variant?: 'fill' | 'outline' | 'text';
+  type?: '' | 'submit'
 }
 
 const Button: FC<PropsWithChildren<Props>> = (props) =>{
-  const { className, onClick, onSubmit, type = 'fill', children } = props
-  return createElement('button', { className: `${classes[`button_${type}`]} ${className}`, onClick, onSubmit }, children);
+  const { className, onClick, onSubmit, variant = 'fill', type, children } = props
+  return createElement('button', { type, className: `${classes[`button_${variant}`]} ${className}`, onClick, onSubmit }, children);
 }
 
 export default Button;

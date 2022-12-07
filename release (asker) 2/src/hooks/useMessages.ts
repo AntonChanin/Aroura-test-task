@@ -10,7 +10,7 @@ const useMessages = () => {
   });
   const { addPost } = useActions();
 
-  localStorage.clear();
+  localStorage.setItem('rfk_posts', '[]');
 
   useEffect(() => {
     const postEmpties = new Array(Math.round(Math.random() * 15) ?? 5).fill(0);

@@ -30,11 +30,13 @@ export const messageApi = createApi({
         return {
           url: `api/json/message`,
           mode: 'cors',
+          method: 'POST',
           headers: {
             'type': 'application/json',
             'Origin': '*',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods':'POST',
+            'Access-Control-Allow-Methods':'DELETE, POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
           },
           params: {
             author,
