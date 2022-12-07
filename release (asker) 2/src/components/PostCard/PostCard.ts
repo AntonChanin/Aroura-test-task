@@ -1,8 +1,8 @@
 import { createElement, FC } from 'react';
 
 import { PostModel } from '../../models/model';
-import uuidKey from '../../utils/uuid';
-import CommentCard from '../CommentCard';
+import uuid from '../../utils/uuid';
+import CommentTree from '../CommentTree';
 import classes from './PostCard.module.scss';
 
 type Props = {
@@ -16,15 +16,11 @@ const PostCard: FC<Props> = (props) => {
     createElement('article', null, description),
     createElement('div', null,
       images?.map(
-        (image, index: number) => createElement('img', { ...uuidKey({ name: 'image', seed: index }), className: `${classes.image}`, src: image }),
+        (image, index: number) => createElement('img', { ...uuid({ name: 'image', seed: index }), className: `${classes.image}`, src: image }),
       ),
     ),
     createElement('p', null, published),
-    createElement('div', { className: `${classes.comments}`},
-      comments?.map(
-        (commentModel, index) => createElement(CommentCard, { ...uuidKey({ name: 'commentCard', seed: index }), model: commentModel })
-      ),
-    ),
+    createElement(CommentTree, { comments, }),
   );
 };
 

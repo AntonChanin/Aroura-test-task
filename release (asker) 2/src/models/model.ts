@@ -14,8 +14,16 @@ type Message = {
   timestamp: number;
 }
 
+type NestedMessage = Message & {
+  childrens?: NestedMessage[]
+}
+
 type GetMessagesAnswer = {
   messages: Message[];
+}
+
+type GetUserAnswer = {
+  users: any[];
 }
 
 type Error = {
@@ -27,4 +35,4 @@ type ServerResponse<T> = {
   error: Error;
 };
 
-export type { GetMessagesAnswer, Error, Message, PostModel, ServerResponse };
+export type { GetMessagesAnswer, GetUserAnswer, Error, NestedMessage, Message, PostModel, ServerResponse };

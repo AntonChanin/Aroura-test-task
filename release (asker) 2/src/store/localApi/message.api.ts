@@ -26,6 +26,7 @@ export const messageApi = createApi({
         const props = args.split('&');
         const author = props[0];
         const message = props[1];
+        const replayTo = props[2];
         return {
           url: `api/json/message`,
           mode: 'cors',
@@ -36,6 +37,7 @@ export const messageApi = createApi({
           params: {
             author,
             message,
+            replayTo,
           }
         };
       },
