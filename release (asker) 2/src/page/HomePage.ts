@@ -13,6 +13,7 @@ const HomePage = () => {
     refetchOnFocus: true,
   });
   localStorage.clear();
+  
   useEffect(() => {
     const postEmpties = new Array(Math.round(Math.random() * 15) ?? 5).fill(0);
     postEmpties.forEach((_) => {

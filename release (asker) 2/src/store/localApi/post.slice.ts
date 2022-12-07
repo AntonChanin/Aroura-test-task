@@ -17,7 +17,6 @@ export const messageSlice = createSlice({
   reducers: {
     addMessage(state, action: PayloadAction<PostModel>) {
       state.posts.push(action.payload);
-      console.log(state.posts, action.payload);
       localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.posts));
     },
     removeMessage(state, action: PayloadAction<PostModel>) {

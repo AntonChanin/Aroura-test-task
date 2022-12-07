@@ -1,1 +1,27 @@
-.commentCardContainer {}
+.commentCard {
+  font-size: 16px;
+
+  &Button {
+    min-height: 21px;
+    border: 0;
+    color: #ffffff;
+    background-color: #8698bb;
+  }
+  &Input {
+    width: calc(100% - 109px);
+    border: 1px solid #9a9b9c;
+    margin: 0 5px 0 0;
+  }
+}
+
+.bottomBorder {
+  border-color: #edeef0;
+  border-bottom: 1px;
+}
+
+.writeCommentRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
