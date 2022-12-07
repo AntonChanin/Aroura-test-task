@@ -6,7 +6,10 @@ import App from './App';
 import { store } from './store';
 import './index.css';
 
-createRoot(document.getElementById('app')!).render(
+const rootElement = document.getElementById('app');
+const root = createRoot(rootElement!);
+
+root.render(
   createElement(Provider,
     {
       store,
