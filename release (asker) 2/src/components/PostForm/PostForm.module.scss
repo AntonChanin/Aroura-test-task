@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  
+  .input {
+    width: calc(100% - 109px);
+    border: 1px solid #9a9b9c;
+    margin: 0 5px 0 0;
+  }
+}
+  

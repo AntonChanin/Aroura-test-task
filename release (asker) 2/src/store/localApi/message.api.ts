@@ -31,7 +31,9 @@ export const messageApi = createApi({
           url: `api/json/message`,
           mode: 'cors',
           headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'type': 'application/json',
+            'Origin': '*',
+            'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods':'POST',
           },
           params: {
@@ -46,4 +48,4 @@ export const messageApi = createApi({
   }),
 });
 
-export const { useGetMessegesQuery, useLazyGetMessegesQuery } = messageApi;
+export const { useGetMessegesQuery, useLazyGetMessegesQuery, useLazyPostMessageQuery, usePostMessageQuery } = messageApi;

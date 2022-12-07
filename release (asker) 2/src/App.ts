@@ -10,7 +10,6 @@ const App = () => {
     createElement(Navigation, { key: '0' }),
     createElement(Routes, null,
       createElement(Route, { path: '/', element: createElement(HomePage, { key: 'homePage' }), key: 'homePageRoute' }),
-      createElement(Route, { path: '/favorites', element: createElement('div',  { key: 'favorites', innerHTML: `<div>AAA</div>` }), key: 'favoritesRoute' }),
     ),
   );
 }

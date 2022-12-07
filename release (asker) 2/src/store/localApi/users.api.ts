@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ServerResponse, GetMessagesAnswer, GetUserAnswer } from '../../models/model';
+import { ServerResponse, GetUsersAnswer, GetUserAnswer } from '../../models/model';
 
 export const usersApi = createApi({
   reducerPath: 'users/api',
@@ -14,14 +14,16 @@ export const usersApi = createApi({
           url: `api/json/me`,
           mode: 'cors',
           headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'type': 'application/json',
+            'Origin': '*',
+            'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods':'GET',
           },
         };
       },
       transformResponse: (response: ServerResponse<GetUserAnswer>) => response.answer,
     }),
-    getUsers: build.query<GetUserAnswer, string>({
+    getUsers: build.query<GetUsersAnswer, string>({
       query: () => ({
         url: `api/json/users`,
         mode: 'cors',
@@ -32,9 +34,9 @@ export const usersApi = createApi({
           'Access-Control-Allow-Methods':'GET',
         },
       }),
-      transformResponse: (response: ServerResponse<GetUserAnswer>) => response.answer,
+      transformResponse: (response: ServerResponse<GetUsersAnswer>) => response.answer,
     }),
   }),
 });
 
-export const { useGetUsersQuery, useLazyGetUsersQuery } = usersApi;
+export const { useGetUsersQuery, useGetMeQuery, useLazyGetMeQuery, useLazyGetUsersQuery } = usersApi;

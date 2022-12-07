@@ -1,3 +1,10 @@
+type UserModel = {
+  id: string;
+  image?: string;
+  name: string;
+  surname: string
+}
+
 type PostModel = {
   id: string;
   description: string;
@@ -22,8 +29,12 @@ type GetMessagesAnswer = {
   messages: Message[];
 }
 
+type GetUsersAnswer = {
+  users: UserModel[];
+}
+
 type GetUserAnswer = {
-  users: any[];
+  user: UserModel;
 }
 
 type Error = {
@@ -35,4 +46,14 @@ type ServerResponse<T> = {
   error: Error;
 };
 
-export type { GetMessagesAnswer, GetUserAnswer, Error, NestedMessage, Message, PostModel, ServerResponse };
+export type {
+  GetMessagesAnswer,
+  GetUsersAnswer,
+  GetUserAnswer,
+  Error,
+  NestedMessage,
+  Message,
+  UserModel,
+  PostModel,
+  ServerResponse,
+};

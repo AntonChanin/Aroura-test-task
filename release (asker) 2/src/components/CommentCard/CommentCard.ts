@@ -1,8 +1,9 @@
-import { createElement, FC, Fragment, useState } from 'react';
+import { createElement, FC, useState } from 'react';
+import useAppSelector from '../../hooks/redux';
 import { Message } from '../../models/model';
-import { useLazyGetMessegesQuery } from '../../store/localApi/message.api';
-import { useGetUsersQuery } from '../../store/localApi/users.api';
 import { getDecodeDate, getDecodeURIComponent } from '../../utils/getDecode';
+import Accordion from '../Accordion/Accordion';
+import PostForm from '../PostForm';
 
 import classes from './CommentCard.module.scss';
 
@@ -14,39 +15,30 @@ type Props = {
 }
 
 const CommentCard: FC<Props> = (props) => {
-  const { model  } = props;
-  const { author, message, id, replyTo, timestamp } = model;
+  const { model } = props;
+  const { author, message, id, timestamp } = model;
   const [isOpenForm, setIsOpenForm] = useState(false);
-  const [currentInput, setCurrentInput] = useState('');
-  const [postMessage] = useLazyGetMessegesQuery();
-  const { isLoading, data: Me } = useGetUsersQuery('');
+  const { userObj } = useAppSelector((state) => state.users);
+  const { name, surname, image } = userObj[author];
+  const authorFullName = `${getDecodeURIComponent(name)} ${getDecodeURIComponent(surname)}`
 
   return createElement('div', { className: classes.commentCard }, 
-    [
-      createElement(Fragment, null, [
-        createElement('span', null, 'Author:'),
-        createElement('img', { className: '', alt: '', src: `data:image/png;base64,${author}` }),
-      ]),
-      createElement('p', null, `${getDecodeURIComponent(message)} `),
-      
-      isOpenForm ? createElement(
-        'form', { className: classes.writeCommentRow }, createElement('input', {
-          className: classes.commentCardInput,
-          placeholder: 'write comment here...',
-          onChange: (event) => {
-            setCurrentInput(event.target.value);
-          },
-        }), createElement('button', { className: classes.commentCardButton, onSubmit: () => { 
-          postMessage(`${'author'}&${currentInput}&${id}`); } }, 'Post comment')
-      ) : null,
-      createElement(
-        'div',
-        { className: classes.writeCommentRow },
-        createElement('span', null, `Published: ${getDecodeDate(timestamp)}`),
-        createElement('button', { className: classes.commentCardButton, onClick: () => setIsOpenForm(!isOpenForm) }, isOpenForm ? 'Cancel comment' : 'Write comment'),
-      ),
-      createElement('hr', { className: classes.bottomBorder }),
-    ]
+    createElement(
+      'div',
+      { className: classes.commentCardUserRow },
+      createElement('span', { className: classes.userName }, `Author: ${authorFullName}`),
+      createElement('img', { className: classes.commentCardAvatar, src: image?.replace('file/', 'filePublic/'), alt: '' }),
+    ),
+    createElement('p', null, `${getDecodeURIComponent(message)} `),
+    isOpenForm ? createElement(PostForm, { replyTo: id }) : null,
+    createElement(
+      Accordion,
+      {
+        title: `Published: ${getDecodeDate(timestamp)}`,
+        buttonText: isOpenForm ? 'Cancel comment' : 'Write comment',
+        onClick: () => setIsOpenForm(!isOpenForm),
+      },
+    ),
   );
 };
 

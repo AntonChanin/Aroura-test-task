@@ -1,4 +1,4 @@
-import { createElement, FC, Fragment, useEffect, useState } from 'react';
+import { createElement, FC } from 'react';
 import { Message } from '../../models/model';
 import uuid from '../../utils/uuid';
 import CommentCard from '../CommentCard';
@@ -32,15 +32,13 @@ const CommentTree: FC<Props> = (props) => {
   }));
 
 
-  let items = createElement(Fragment, null,
-    comments?.length ? createElement(
-      'div',
-      { className: classes.commentCardTreeContainer, id: comments[0].id },
-      comments.map(
-        (message, index) => createElement(CommentCard, { ...uuid({ name: `commentCard_replayTo${''}`, seed: index }), model: message })
-      ),
-    ) : null, rootTrees.map(({ element }) => element),
-  );
+  let items = comments?.length ? createElement(
+    'div',
+    { className: classes.commentCardTreeContainer, id: comments[0].id },
+    comments.map(
+      (message, index) => createElement(CommentCard, { ...uuid({ name: `commentCard_replayTo${''}`, seed: index }), model: message })
+    ),
+  ) : null;
 
   return items;
 };

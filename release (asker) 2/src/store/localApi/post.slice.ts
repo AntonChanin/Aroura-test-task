@@ -1,29 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PostModel } from '../../models/model';
 
-type messageState = {
+type postState = {
   posts: PostModel[];
 }
 
-const LS_FAV_KEY = 'rfk';
+const LS_POSTS_KEY = 'rfk_posts';
 
-const initialState: messageState = {
-  posts: JSON.parse(localStorage.getItem(LS_FAV_KEY) ?? '[]'),
+const initialState: postState = {
+  posts: JSON.parse(localStorage.getItem(LS_POSTS_KEY) ?? '[]'),
 }
 
-export const messageSlice = createSlice({
+export const postSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    addMessage(state, action: PayloadAction<PostModel>) {
+    addPost(state, action: PayloadAction<PostModel>) {
       state.posts.push(action.payload);
-      localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.posts));
+      localStorage.setItem(LS_POSTS_KEY, JSON.stringify(state.posts));
     },
-    removeMessage(state, action: PayloadAction<PostModel>) {
+    removePost(state, action: PayloadAction<PostModel>) {
       state.posts = state.posts.filter(f => f !== action.payload);
-      localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.posts));
+      localStorage.setItem(LS_POSTS_KEY, JSON.stringify(state.posts));
     },
   },
 });
 
-export const { actions: postsActions, reducer: postsReducer } = messageSlice;
+export const { actions: postsActions, reducer: postsReducer } = postSlice;

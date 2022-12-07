@@ -8,7 +8,6 @@ const Navigation = () => {
     createElement('h3', { className: classes.fontBold, key: 'link_h3_0' }),
     createElement('span', { className: `${classes.nav} ${classes.navLinkList}`, key: 'span_0' }, [
       createElement(Link, { to: '/', key: 'link_0' }, 'Home'),
-      createElement(Link, { to: '/favorites', key: 'link_1' }, 'Favorites'),
     ]),
   ]);
 };

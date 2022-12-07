@@ -1,16 +1,23 @@
 .commentCard {
   font-size: 16px;
 
-  &Button {
-    min-height: 21px;
-    border: 0;
-    color: #ffffff;
-    background-color: #8698bb;
+  &Avatar {
+    width: 20px;
+    height: 20px;
   }
+
   &Input {
     width: calc(100% - 109px);
     border: 1px solid #9a9b9c;
     margin: 0 5px 0 0;
+  }
+
+  &UserRow {
+    display: flex;
+    .userName {
+      font-weight: 500;
+      margin-right: 5px;
+    }
   }
 }
 

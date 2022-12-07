@@ -1,0 +1,22 @@
+$white: #ffffff;
+$primaryColor: #8698bb;
+$transparent: transparent;
+
+.button {
+  min-height: 21px;
+  &_fill {
+    border: 0;
+    background-color: $primaryColor;
+    color: $white;
+  }
+  &_outline {
+    border: 1px solid $primaryColor;
+    background-color: $transparent;
+    color: $primaryColor;
+  }
+  &_text {
+    border: 0;
+    background-color: $transparent;
+    color: $primaryColor;
+  } 
+}
