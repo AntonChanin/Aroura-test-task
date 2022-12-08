@@ -1,5 +1,6 @@
 import { createElement, FC, useState } from 'react';
 
+import useComments from '../../hooks/useComments';
 import { PostModel } from '../../models/model';
 import uuid from '../../utils/uuid';
 import Accordion from '../Accordion/Accordion';
@@ -12,8 +13,9 @@ type Props = {
 };
 
 const PostCard: FC<Props> = (props) => {
-  const { model: { id, images, description, published, comments } } = props;
+  const { model: { images, description, published, comments } } = props;
   const [isOpenCommentTree, setIsOpsenCommentTree] = useState(false);
+  const rootComments = useComments(comments);
 
   return createElement('div', { className: `${classes.postCardContainer}` }, 
     createElement('article', null, description),
@@ -26,10 +28,14 @@ const PostCard: FC<Props> = (props) => {
       Accordion,
       {
         title: `Published: ${published}`,
-        buttonText: `${isOpenCommentTree ? 'Hidden comments' : 'See comments'} (${comments.length})`,
-        onClick: () => setIsOpsenCommentTree(!isOpenCommentTree),
+        buttons: [
+          {
+            value: `${isOpenCommentTree ? 'Hidden comments' : 'See comments'} (${rootComments.length})`,
+            onClick: () => setIsOpsenCommentTree(!isOpenCommentTree)
+          },
+        ],
       },
-      isOpenCommentTree ? createElement(CommentTree, { comments }) : null
+      isOpenCommentTree ? createElement(CommentTree, { comments, rootComments }) : null
     ),
     createElement(PostForm, { replyTo: 0 }),
   );

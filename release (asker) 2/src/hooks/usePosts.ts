@@ -4,7 +4,7 @@ import { useGetMessegesQuery } from '../store/localApi/message.api';
 import getLoremIpsum from '../utils/getLoremIpsum';
 import useActions from './actions';
 
-const useMessages = () => {
+const usePosts = () => {
   const { isLoading, isError, data } = useGetMessegesQuery('', {
     refetchOnFocus: true,
   });
@@ -28,4 +28,4 @@ const useMessages = () => {
   }, [isLoading]);
 };
 
-export default useMessages;
+export default usePosts;
