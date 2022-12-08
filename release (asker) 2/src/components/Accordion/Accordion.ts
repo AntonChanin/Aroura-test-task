@@ -4,6 +4,7 @@ import { ButtonModel } from '../../models/model';
 import Button from '../Button';
 import uuid from '../../utils/uuid';
 import classes from './Accordion.module.scss';
+import ButtonGroup from '../ButtonGroup';
 
 
 
@@ -21,15 +22,7 @@ const Accordion: FC<PropsWithChildren<Props>> = (props) => {
       'div',
       { className: classes.accordion },
       createElement('span', null, title ?? null),
-      buttons.map(
-        ({ value, onClick }) => (
-          createElement(
-            Button,
-            { ...uuid({ name: `button_accordion${''}`, seed: 1 }), onClick, variant: 'text' },
-            value ?? null
-          )
-        ),
-      ),
+      createElement(ButtonGroup, { buttons }),
     ),
     createElement('hr', { className: classes.accordionBottom }),
     children ?? null,
