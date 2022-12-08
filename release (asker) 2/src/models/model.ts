@@ -1,3 +1,8 @@
+type ButtonModel = {
+  value?: string;
+  onClick?(event: MouseEvent): void;
+}
+
 type UserModel = {
   id: string;
   image?: string;
@@ -10,10 +15,10 @@ type PostModel = {
   description: string;
   images: string[];
   published: string;
-  comments: Message[];
+  comments: MessageModel[];
 }
 
-type Message = {
+type MessageModel = {
   id: number;
   replyTo: number;
   author: string;
@@ -21,12 +26,8 @@ type Message = {
   timestamp: number;
 }
 
-type NestedMessage = Message & {
-  childrens?: NestedMessage[]
-}
-
 type GetMessagesAnswer = {
-  messages: Message[];
+  messages: MessageModel[];
 }
 
 type GetUsersAnswer = {
@@ -37,7 +38,7 @@ type GetUserAnswer = {
   user: UserModel;
 }
 
-type Error = {
+type ErrorModel = {
   code: number;
 }
 
@@ -47,12 +48,12 @@ type ServerResponse<T> = {
 };
 
 export type {
+  ButtonModel,
   GetMessagesAnswer,
   GetUsersAnswer,
   GetUserAnswer,
-  Error,
-  NestedMessage,
-  Message,
+  ErrorModel,
+  MessageModel,
   UserModel,
   PostModel,
   ServerResponse,
